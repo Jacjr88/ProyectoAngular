@@ -1,56 +1,41 @@
-<div class="container py-2 text-center">
-  <!--<div class="row">
-    <div class="col-md login-buttom">
-      <div class="d-flex justify-content-end">
-        <button class="btn btn-outline-secondary" type="button">LOGIN</button>
-      </div>
-    </div>
-  </div>-->
-  <!--<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-      <div class="navbar-nav">
-        <a class="nav-item nav-link" href="#">Home</a>
-        <a class="nav-item nav-link" href="#">Seguimiento</a>
-        <a class="nav-item nav-link" href="#">Iniciar Sesion</a>
-        <a class="nav-item nav-link" href="#">Cerrar Sesion</a>
-      </div>
-    </div>
-  </nav>-->
-  <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-    <div class="container-fluid">
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item">
-            <a class="nav-link" aria-current="page" href="#">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Seguimiento</a>
-          </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Acciones
-            </a>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="#">Nominar</a></li>
-              <li><a class="dropdown-item" href="#">Parametrizar</a></li>
-              <li><hr class="dropdown-divider"></li>
-              <li><a class="dropdown-item" href="#">Reportar</a></li>
-            </ul>
-          </li>
-          <li class="nav-item">
-            <a *ngIf="!userLoginOn" class="nav-link" routerLink="/inicio">Login</a>
-          </li>
-          <li class="nav-item">
-            <a *ngIf="userLoginOn" (click)="logout()" class="nav-link" routerLink="/login">Cerrar Sesion</a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
-</div>
+<mat-toolbar class="mat-elevation-z10" color="primary" >
+  <button mat-icon-button>
+    <mat-icon>menu</mat-icon>
+  </button>
+  <span>Proyecto Angular 15</span>
+  <span class="spacer"></span>
+  <button mat-button routerLink="/inicio">Home</button>
+  <button [matMenuTriggerFor]="lvlmaster" mat-button >Procesos</button>
+  <mat-menu #lvlmaster="matMenu">
+    <button mat-menu-item>Simulacion</button>
+    <button mat-menu-item>Distribucion</button>
+    <button [matMenuTriggerFor]="reporteria" mat-menu-item>Reporteria</button>
+  </mat-menu>
+  <mat-menu #reporteria="matMenu">
+    <button mat-menu-item>Distribucion</button>
+    <button mat-menu-item>Consolidado</button>
+    <button mat-menu-item>Comision e IVA</button>
+  </mat-menu>
+  <button mat-button routerLink="/nominacion">Nominacion</button>
+  <button mat-button routerLink="/contact">Contact</button>
+  <button *ngIf="userLoginOn" (click)="logout()" mat-raised-button color="warn" routerLink="/login">Logout</button>
+  <button mat-icon-button (click)="checked()">
+    <mat-icon matBadge="5" [matBadgeHidden]="visibleBadge" matBadgeColor="warn"
+    >sms</mat-icon>
+  </button>
+</mat-toolbar>
+<!--<mat-drawer-container autosize="">
+  <mat-drawer #drawer opened="true" mode="side">
+    <mat-nav-list>
+      <mat-list-item>
+        <button mat-button>
+          <mat-icon>home</mat-icon> Home
+        </button>
+      </mat-list-item>
+    </mat-nav-list>
+
+  </mat-drawer>
+  <mat-drawer-content>
+
+  </mat-drawer-content>
+</mat-drawer-container>-->

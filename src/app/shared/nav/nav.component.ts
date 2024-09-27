@@ -10,6 +10,8 @@ export class NavComponent implements OnInit{
 
   userLoginOn:boolean=true;
 
+  visibleBadge:boolean=false;
+
   constructor(private appComponent:AppComponent){}
 
   ngOnInit(): void {
@@ -19,4 +21,10 @@ export class NavComponent implements OnInit{
   logout(){
     this.appComponent.userLoginOn = false;
   }
+
+  checked(){
+    this.visibleBadge = true;
+  }
+
+
 }

@@ -10,6 +10,10 @@ import { HomeComponent } from './pages/home/home.component';
 import { NavComponent } from './shared/nav/nav.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule} from '@angular/common/http';
+import { MaterialModule} from 'src/Material.Module';
+import { NominacionComponent } from './pages/nominacion/nominacion.component';
+import { ContactComponent } from './pages/contact/contact.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -18,13 +22,17 @@ import { HttpClientModule} from '@angular/common/http';
     FooterComponent,
     LoginComponent,
     HomeComponent,
-    NavComponent
+    NavComponent,
+    NominacionComponent,
+    ContactComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    MaterialModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

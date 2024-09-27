@@ -1,4 +1,4 @@
-<form [formGroup]="loginForm" class="text-center">
+<!--<form [formGroup]="loginForm" class="text-center">
   <div>
     <div class="mb-2 w-100">
       <label for="exampleInputEmail1" class="form-label">Usuario</label>
@@ -26,6 +26,42 @@
     <button type="submit" (click)="login()" class="btn btn-outline-dark">Iniciar Sesion</button>
     <p class="text-danger">{{loginError}}</p>
 
-    
+
   </div>
-</form>
+</form>-->
+<div class="login-container">
+  <form [formGroup]="loginForm" class="example-form">
+      <mat-form-field class="example-full-width">
+        <mat-label>Ingrese email</mat-label>
+        <input formControlName="email" type="email"  class="form-control"
+        matInput placeholder="pepito@hotmail.com">
+        <div *ngIf="email.invalid && (email.dirty || email.touched)"
+            class="mensaje-error">
+            <div *ngIf="email.errors?.['required']">
+              El email es requerido.
+            </div>
+            <div *ngIf="email.errors?.['email']">
+              Formato de email invalido.
+            </div>
+        </div>
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <mat-label>Ingrese su password</mat-label>
+        <input formControlName="password" type="password" class="form-control" matInput placeholder="password">
+        <div *ngIf="password.invalid && (password.dirty || password.touched)"
+            class="mensaje-error">
+            <div *ngIf="password.errors?.['required']">
+              El password es requerido.
+            </div>
+        </div>
+      </mat-form-field>
+      <div *ngIf="loginSuccessAlert"
+            class="mensaje-error-login">
+            <div>
+              Usuario o contraseña incorrecto, vuelva a intentar.
+            </div>
+      </div>
+      <button type="submit" (click)="login()" class="login-button" mat-raised-button color="primary">Iniciar Sesion</button>
+
+  </form>
+</div>

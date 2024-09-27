@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators} from '@angular/forms';
 import { Router } from '@angular/router'
 import { AppComponent } from 'src/app/app.component';
-import { AppModule } from 'src/app/app.module';
 import { LoginService } from 'src/app/services/auth/login.service';
 import { LoginRequest } from 'src/app/services/auth/loginRequest';
 
@@ -14,9 +13,10 @@ import { LoginRequest } from 'src/app/services/auth/loginRequest';
 export class LoginComponent implements OnInit{
 
     loginError:string="";
+    loginSuccessAlert:boolean=false
 
     loginForm=this.formBuilder.group({
-      email:['pepito@gmail.com', [Validators.required, Validators.email]],
+      email:['', [Validators.required, Validators.email]],
       password:['', Validators.required]
     })
 
@@ -29,6 +29,7 @@ export class LoginComponent implements OnInit{
 
     ngOnInit(): void {
       this.appComponent.userLoginOn = false;
+      this.loginSuccessAlert = false;
       console.log(this.appComponent.userLoginOn);
     }
 
@@ -36,7 +37,7 @@ export class LoginComponent implements OnInit{
 
     get password() { return this.loginForm.controls.password; }
 
-    login(){
+    login() {
 
       if(this.loginForm.valid && this.loginService.validate(this.loginForm.value as LoginRequest)){
         this.loginService.login(this.loginForm.value as LoginRequest).subscribe({
@@ -60,8 +61,8 @@ export class LoginComponent implements OnInit{
         });
 
       } else {
-        alert("El email o password es incorrecto");
         this.loginForm.markAllAsTouched();
+        this.loginSuccessAlert = true;
       }
     }
 }
