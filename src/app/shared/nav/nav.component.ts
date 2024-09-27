@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AppComponent } from 'src/app/app.component';
+import { LoginService } from 'src/app/services/auth/login.service';
 
 @Component({
   selector: 'app-nav',
@@ -12,10 +13,11 @@ export class NavComponent implements OnInit{
 
   visibleBadge:boolean=false;
 
-  constructor(private appComponent:AppComponent){}
+  constructor(private appComponent:AppComponent, private loginService:LoginService){}
+
+  rol:string=this.loginService.rol;
 
   ngOnInit(): void {
-
   }
 
   logout(){

@@ -7,6 +7,7 @@ import { AppComponent } from 'src/app/app.component';
   styleUrls: ['./nominacion.component.scss']
 })
 export class NominacionComponent {
+  showPopUp:boolean=true;
 
   constructor(private appComponent:AppComponent){}
 

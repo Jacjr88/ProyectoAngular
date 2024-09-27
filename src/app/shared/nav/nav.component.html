@@ -16,11 +16,11 @@
     <button mat-menu-item>Consolidado</button>
     <button mat-menu-item>Comision e IVA</button>
   </mat-menu>
-  <button mat-button routerLink="/nominacion">Nominacion</button>
-  <button mat-button routerLink="/contact">Contact</button>
+
+  <button *ngIf="rol==='admin'" mat-button routerLink="/nominacion">Nominacion</button>
+  <button *ngIf="rol==='admin'" mat-button routerLink="/contact">Contact</button>
   <button *ngIf="userLoginOn" (click)="logout()" mat-raised-button color="warn" routerLink="/login">Logout</button>
   <button mat-icon-button (click)="checked()">
-    <mat-icon matBadge="5" [matBadgeHidden]="visibleBadge" matBadgeColor="warn"
-    >sms</mat-icon>
+    <mat-icon matBadge="5" [matBadgeHidden]="visibleBadge" matBadgeColor="warn">sms</mat-icon>
   </button>
 </mat-toolbar>

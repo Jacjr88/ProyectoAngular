@@ -14,6 +14,9 @@ import { MaterialModule} from 'src/Material.Module';
 import { NominacionComponent } from './pages/nominacion/nominacion.component';
 import { ContactComponent } from './pages/contact/contact.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { LayoutComponent } from './shared/layout/layout.component';
+import { AuthGuard } from './shared/guard/auth.guard';
+import { DeactivateGuard } from './shared/guard/deactivate.guard';
 
 @NgModule({
   declarations: [
@@ -24,7 +27,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     HomeComponent,
     NavComponent,
     NominacionComponent,
-    ContactComponent
+    ContactComponent,
+    LayoutComponent
   ],
   imports: [
     BrowserModule,
@@ -34,7 +38,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     MaterialModule,
     BrowserAnimationsModule
   ],
-  providers: [],
+  providers: [AuthGuard, DeactivateGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule {
