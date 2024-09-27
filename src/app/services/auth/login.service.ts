@@ -3,6 +3,7 @@ import { LoginRequest } from './loginRequest';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { catchError, Observable, throwError } from 'rxjs';
 import { UserData } from './userData';
+import { UserRol } from './userRol';
 import { LoginResponse } from './loginResponse';
 
 
@@ -10,6 +11,13 @@ import { LoginResponse } from './loginResponse';
   providedIn: 'root'
 })
 export class LoginService {
+
+  rol:string="";
+
+  private validUsers = [
+    { email: 'jacjr@gmail.com', password: '123456', rol: 'admin' },
+    { email: 'user@gmail.com', password: '123456', rol: 'user' }
+  ];
 
   constructor(private httpClient:HttpClient) { }
 
@@ -19,13 +27,17 @@ export class LoginService {
     )
   }
 
-  validate(credentials:LoginRequest):Boolean{
-    //Aca deberia controlar contra validUser.json y si coincide email y pass devolver true
-    let usuarioValido = {
-      "email": "jacjr@gmail.com",
-      "password":"123456"
+  validate(credentials: LoginRequest): UserRol | null {
+    const user = this.validUsers.find(u =>
+      u.email === credentials.email && u.password === credentials.password
+    );
+
+    if (user) {
+      this.rol=user.rol;
+      return { rol: user.rol };
     }
-    return credentials.email===usuarioValido.email && credentials.password===usuarioValido.password;
+
+    return null;
   }
 
   private handleError(error:HttpErrorResponse){

@@ -4,6 +4,7 @@ import { Router } from '@angular/router'
 import { AppComponent } from 'src/app/app.component';
 import { LoginService } from 'src/app/services/auth/login.service';
 import { LoginRequest } from 'src/app/services/auth/loginRequest';
+import { UserRol } from 'src/app/services/auth/userRol';
 
 @Component({
   selector: 'app-login',
@@ -13,7 +14,7 @@ import { LoginRequest } from 'src/app/services/auth/loginRequest';
 export class LoginComponent implements OnInit{
 
     loginError:string="";
-    loginSuccessAlert:boolean=false
+    loginSuccessAlert:boolean=false;
 
     loginForm=this.formBuilder.group({
       email:['', [Validators.required, Validators.email]],
@@ -37,9 +38,9 @@ export class LoginComponent implements OnInit{
 
     get password() { return this.loginForm.controls.password; }
 
-    login() {
+    login():UserRol | any{
 
-      if(this.loginForm.valid && this.loginService.validate(this.loginForm.value as LoginRequest)){
+      if(this.loginForm.valid && this.loginService.validate(this.loginForm.value as LoginRequest) !== null){
         this.loginService.login(this.loginForm.value as LoginRequest).subscribe({
           next: (userData) => {
             console.log(userData);
@@ -57,6 +58,7 @@ export class LoginComponent implements OnInit{
 
             this.router.navigateByUrl('/inicio');
             this.loginForm.reset();
+            return this.loginService.validate(this.loginForm.value as LoginRequest);
           }
         });
 
